@@ -1,7 +1,8 @@
 "use client"
 
 import TestComponentSignin from "@/components/testComponentSignin";
-import TestComponent from "@/components/testcomponent";
+import TestComponent from "@/components/testComponent";
+
 
 export default function Page() {
   return (
