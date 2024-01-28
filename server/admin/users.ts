@@ -5,7 +5,7 @@ import { ObjectId } from "mongodb";
 import { z } from "zod";
 
 const userSchema = z.object({
-  _id: z.instanceof(ObjectId),
+  _id: z.string(),
   userName: z.string(),
   email: z.string().email(),
   userType: z.string(),
@@ -32,6 +32,18 @@ export async function getUserById(id: string) {
     const client = await clientPromise;
     const user = client.db("resolution").collection("user");
     const result = user.findOne({ _id: new ObjectId(id) })
+    return result
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
+}
+
+export async function getUserByEmail(email: string) {
+  try {
+    const client = await clientPromise;
+    const user = client.db("resolution").collection("user");
+    const result = user.findOne({ email: email})
     return result
   } catch (err) {
     console.log(err);
